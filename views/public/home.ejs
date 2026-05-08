@@ -69,18 +69,27 @@
     <div class="projects-grid">
 
       <% if (featuredProjects && featuredProjects.length > 0) { %>
-  <% featuredProjects.forEach(project => { %>
+        <% featuredProjects.forEach(project => { %>
 
-          <div class="project-card">
+          <div class="project-card" style="overflow:hidden; border-radius:20px;">
 
             <img 
               src="<%= project.heroImage && project.heroImage.url ? project.heroImage.url : '/images/placeholder.jpg' %>"
               alt="<%= project.name %>"
+              style="
+                width:100%;
+                height:220px;
+                object-fit:cover;
+                display:block;
+              "
             >
 
             <div class="card-content">
               <h3><%= project.name %></h3>
-              <p><%= project.location %></p>
+
+              <% if (project.location) { %>
+                <p>📍 <%= project.location %></p>
+              <% } %>
 
               <a href="/projects/<%= project.slug %>" class="btn-primary">
                 View Details
@@ -102,6 +111,7 @@
 <!-- ONGOING -->
 <section class="ongoing-projects">
   <div class="container">
+
     <h2 class="section-title">Ongoing Projects</h2>
 
     <div class="projects-grid">
@@ -109,14 +119,21 @@
       <% if (ongoingProjects && ongoingProjects.length > 0) { %>
         <% ongoingProjects.forEach(project => { %>
 
-          <div class="project-card">
+          <div class="project-card" style="overflow:hidden; border-radius:20px;">
 
             <img 
               src="<%= project.heroImage && project.heroImage.url ? project.heroImage.url : '/images/placeholder.jpg' %>" 
               alt="<%= project.name %>"
+              style="
+                width:100%;
+                height:220px;
+                object-fit:cover;
+                display:block;
+              "
             >
 
             <div class="card-content">
+
               <h3><%= project.name %></h3>
 
               <% if (project.location) { %>
@@ -126,6 +143,7 @@
               <a href="/projects/<%= project.slug %>" class="btn-secondary">
                 View Details
               </a>
+
             </div>
 
           </div>
