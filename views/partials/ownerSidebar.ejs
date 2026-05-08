@@ -1,0 +1,63 @@
+<aside class="admin-sidebar" id="adminSidebar">
+
+  <div class="sidebar-header">
+    <h2 class="sidebar-logo">🌿 Rainbow</h2>
+    <p class="sidebar-tagline">Admin Panel</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <ul class="nav-menu">
+
+      <li>
+        <a href="/owner/dashboard"
+           class="nav-item <%= req.path === '/owner/dashboard' ? 'active' : '' %>">
+          <span>📊</span> Dashboard
+        </a>
+      </li>
+
+      <li>
+        <a href="/owner/projects"
+           class="nav-item <%= req.path.startsWith('/owner/projects') ? 'active' : '' %>">
+          <span>📁</span> Projects
+        </a>
+      </li>
+
+      <li>
+        <a href="/owner/projects/add"
+           class="nav-item <%= req.path === '/owner/projects/add' ? 'active' : '' %>">
+          <span>➕</span> Add Project
+        </a>
+      </li>
+
+      <li>
+        <a href="/owner/enquiries"
+           class="nav-item <%= req.path === '/owner/enquiries' ? 'active' : '' %>">
+          <span>📧</span> Enquiries
+        </a>
+      </li>
+
+      <li>
+        <a href="/owner/settings"
+           class="nav-item <%= req.path === '/owner/settings' ? 'active' : '' %>">
+          <span>⚙️</span> Settings
+        </a>
+      </li>
+
+      <li>
+        <a href="/" target="_blank" class="nav-item">
+          <span>🌐</span> View Site
+        </a>
+      </li>
+
+    </ul>
+  </nav>
+
+  <div class="sidebar-footer">
+    <p><%= ownerName || 'Owner' %></p>
+
+    <a href="/owner/logout" class="btn-logout">
+      🚪 Logout
+    </a>
+  </div>
+
+</aside>

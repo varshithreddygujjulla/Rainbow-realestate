@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <%- include('../partials/navbar.ejs') %>
+
+  <!-- Page Header -->
+<section class="page-header contact-header">
+    <h1>Contact Us</h1>
+    <p>Get in touch with us today</p>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="contact-info-box">
+          <h2>Contact Information</h2>
+
+          <div class="contact-item">
+            <h3>📞 Phone</h3>
+            <% if (settings && settings.phoneNumber) { %>
+              <p><a href="tel:<%= settings.phoneNumber %>"><%= settings.phoneNumber %></a></p>
+            <% } else { %>
+              <p>+91-XXXXX-XXXXX</p>
+            <% } %>
+          </div>
+
+          <div class="contact-item">
+            <h3>📧 Email</h3>
+            <% if (settings && settings.email) { %>
+              <p><a href="mailto:<%= settings.email %>"><%= settings.email %></a></p>
+            <% } else { %>
+              <p>info@rainbowdevelopers.com</p>
+            <% } %>
+          </div>
+
+          <div class="contact-item">
+            <h3>📍 Address</h3>
+            <% if (settings && settings.address) { %>
+              <p><%= settings.address %></p>
+            <% } else { %>
+              <p>Telangana, India</p>
+            <% } %>
+          </div>
+
+          <% if (settings && settings.whatsappNumber) { %>
+            <div class="contact-item">
+              <h3>💬 WhatsApp</h3>
+              <p>
+                <a href="https://wa.me/<%= settings.whatsappNumber %>" target="_blank" class="btn btn-whatsapp-small">
+                  Chat with us
+                </a>
+              </p>
+            </div>
+          <% } %>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-box">
+          <h2>Send Us a Message</h2>
+          <form action="/enquiry" method="POST" class="contact-form">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="6" placeholder="Tell us about your interest..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Send Enquiry</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <%- include('../partials/footer.ejs') %>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

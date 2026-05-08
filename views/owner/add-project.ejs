@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+<%- include('../partials/ownerSidebar.ejs') %>
+
+<main class="admin-main">
+
+<div class="admin-header">
+  <h1>Add New Project</h1>
+</div>
+
+<% if (error?.length) { %>
+  <div class="alert alert-error"><%= error[0] %></div>
+<% } %>
+
+<form action="/owner/projects/add" method="POST" enctype="multipart/form-data" class="project-form">
+
+<!-- BASIC -->
+<fieldset>
+  <legend>Basic Info</legend>
+
+  <input type="text" name="name" placeholder="Project Name" required maxlength="100">
+  <input type="text" name="location" placeholder="Location" required maxlength="150">
+
+  <input type="text" name="district" placeholder="District">
+
+  <select name="category" required>
+    <option value="">Select Category</option>
+    <option value="Completed">Completed</option>
+    <option value="Ongoing">Ongoing</option>
+    <option value="Upcoming">Upcoming</option>
+  </select>
+
+  <label>
+    <input type="checkbox" name="isFeatured"> Featured Project
+  </label>
+</fieldset>
+
+<!-- AREA -->
+<fieldset>
+  <legend>Area</legend>
+
+  <input type="text" name="totalArea" placeholder="Total Area">
+  <input type="text" name="plotArea" placeholder="Plot Area">
+
+  <input type="text" name="approvalType" placeholder="Approval Type">
+  <input type="text" name="statusText" placeholder="Status">
+
+  <!-- ✅ FIXED -->
+  <input type="number" name="completedYear" placeholder="Completed Year (e.g. 2020)">
+</fieldset>
+
+<!-- DESCRIPTION -->
+<fieldset>
+  <legend>Description</legend>
+
+  <textarea name="shortDescription" placeholder="Short description" maxlength="200"></textarea>
+
+  <textarea name="description" placeholder="Full description"></textarea>
+</fieldset>
+
+<!-- AMENITIES -->
+<fieldset>
+  <legend>Amenities</legend>
+
+  <textarea name="amenities" placeholder="One per line"></textarea>
+
+  <textarea name="highlights" placeholder="Highlights (one per line)"></textarea>
+</fieldset>
+
+<!-- PHASES -->
+<fieldset>
+  <legend>Phases</legend>
+
+  <div id="phases"></div>
+
+  <button type="button" onclick="addPhase()">+ Add Phase</button>
+</fieldset>
+
+<!-- IMAGES -->
+<fieldset>
+  <legend>Images</legend>
+
+  <!-- ✅ FIXED FILE TYPES -->
+  <input type="file" name="heroImage" accept="image/jpeg,image/png,image/webp">
+
+  <input type="file" name="photos" multiple accept="image/jpeg,image/png,image/webp">
+</fieldset>
+
+<button type="submit" class="btn btn-primary">Create Project</button>
+
+</form>
+
+</main>
+</div>
+
+<script>
+function addPhase() {
+  const div = document.createElement('div');
+  div.innerHTML = `
+    <input name="phaseName" placeholder="Phase Name">
+    <input name="phaseArea" placeholder="Area">
+    <input name="phaseSqYards" placeholder="Sq Yards">
+    <input name="phaseTlpNo" placeholder="TLP No">
+  `;
+  document.getElementById('phases').appendChild(div);
+}
+</script>
+
+</body>
+</html>

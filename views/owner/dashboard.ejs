@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <%- include('../partials/ownerSidebar.ejs') %>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <!-- Header -->
+      <div class="admin-header">
+        <h1>Dashboard</h1>
+        <p>Welcome back, <%= ownerName %>!</p>
+      </div>
+
+      <!-- Alerts -->
+      <% if (success && success.length > 0) { %>
+        <div class="alert alert-success">
+          <%= success[0] %>
+        </div>
+      <% } %>
+
+      <% if (error && error.length > 0) { %>
+        <div class="alert alert-error">
+          <%= error[0] %>
+        </div>
+      <% } %>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <!-- Total Projects Card -->
+        <div class="stat-card">
+          <div class="stat-icon">📁</div>
+          <div class="stat-content">
+            <h3>Total Projects</h3>
+            <p class="stat-number"><%= stats.totalProjects %></p>
+          </div>
+        </div>
+
+        <!-- Completed Projects Card -->
+        <div class="stat-card">
+          <div class="stat-icon">✅</div>
+          <div class="stat-content">
+            <h3>Completed</h3>
+            <p class="stat-number"><%= stats.completedProjects %></p>
+          </div>
+        </div>
+
+        <!-- Ongoing Projects Card -->
+        <div class="stat-card">
+          <div class="stat-icon">🔄</div>
+          <div class="stat-content">
+            <h3>Ongoing</h3>
+            <p class="stat-number"><%= stats.ongoingProjects %></p>
+          </div>
+        </div>
+
+        <!-- Total Enquiries Card -->
+        <div class="stat-card">
+          <div class="stat-icon">📧</div>
+          <div class="stat-content">
+            <h3>Enquiries</h3>
+            <p class="stat-number"><%= stats.totalEnquiries %></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Projects Section -->
+      <section class="dashboard-section">
+        <div class="section-header">
+          <h2>Recent Projects</h2>
+          <a href="/owner/projects" class="link-view-all">View All →</a>
+        </div>
+
+        <% if (recentProjects && recentProjects.length > 0) { %>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Project Name</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>Created</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% recentProjects.forEach(project => { %>
+                  <tr>
+                    <td>
+                      <strong><%= project.name %></strong>
+                    </td>
+                    <td>
+                      <span class="badge <%= project.category === 'Completed' ? 'badge-success' : 'badge-info' %>">
+                        <%= project.category %>
+                      </span>
+                    </td>
+                    <td><%= project.statusText %></td>
+                    <td><%= new Date(project.createdAt).toLocaleDateString() %></td>
+                    <td>
+                      <a href="/owner/projects/<%= project._id %>/edit" class="btn-small btn-edit">Edit</a>
+                    </td>
+                  </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </div>
+        <% } else { %>
+          <div class="no-data-message">
+            <p>No projects yet. <a href="/owner/projects/new">Create your first project</a></p>
+          </div>
+        <% } %>
+      </section>
+
+      <!-- Recent Enquiries Section -->
+      <section class="dashboard-section">
+        <div class="section-header">
+          <h2>Recent Enquiries</h2>
+          <a href="/owner/enquiries" class="link-view-all">View All →</a>
+        </div>
+
+        <% if (recentEnquiries && recentEnquiries.length > 0) { %>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Project</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% recentEnquiries.forEach(enquiry => { %>
+                  <tr>
+                    <td><strong><%= enquiry.name %></strong></td>
+                    <td><%= enquiry.email %></td>
+                    <td><%= enquiry.phone %></td>
+                    <td><%= enquiry.projectName || 'General' %></td>
+                    <td>
+                      <span class="badge <%= enquiry.status === 'New' ? 'badge-warning' : 'badge-success' %>">
+                        <%= enquiry.status %>
+                      </span>
+                    </td>
+                    <td><%= new Date(enquiry.createdAt).toLocaleDateString() %></td>
+                  </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </div>
+        <% } else { %>
+          <div class="no-data-message">
+            <p>No enquiries yet</p>
+          </div>
+        <% } %>
+      </section>
+    </main>
+  </div>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

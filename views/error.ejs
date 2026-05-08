@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error - Rainbow Developers</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <%- include('./partials/navbar.ejs') %>
+
+  <!-- Error Section -->
+  <section class="error-section">
+    <div class="container">
+      <div class="error-content">
+        <h1 class="error-code">⚠️</h1>
+        <h2 class="error-title"><%= title || 'Server Error' %></h2>
+        <p class="error-message">
+          <%= message || 'An unexpected error occurred. Please try again later.' %>
+        </p>
+        <a href="/" class="btn btn-primary">Go Home</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <%- include('./partials/footer.ejs') %>
+</body>
+</html>

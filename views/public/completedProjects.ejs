@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <%- include('../partials/navbar.ejs') %>
+
+  <!-- PAGE HEADER -->
+  <!-- PROJECTS SECTION -->
+<section class="projects-section">
+
+  <div class="container">
+
+    <!-- SECTION HEADING -->
+    <div class="section-heading">
+
+      <span>Our Completed Projects</span>
+
+      <h2>
+        Delivering Excellence, Every Time
+      </h2>
+
+      <p>
+        Over the years, we have successfully delivered premium open plots and layouts in prime locations. Each project reflects our commitment to quality, transparency, and customer satisfaction.
+      </p>
+
+    </div>
+
+    <% if (projects && projects.length > 0) { %>
+
+      <% projects.forEach((project, index) => { %>
+
+        <div class="project-showcase <%= index % 2 !== 0 ? 'reverse' : '' %>">
+
+          <!-- IMAGE -->
+          <div class="showcase-image">
+
+            <% if (project.heroImage && project.heroImage.url) { %>
+
+              <img 
+                src="<%= project.heroImage.url %>" 
+                alt="<%= project.name %>"
+              >
+
+            <% } else { %>
+
+              <img 
+                src="/images/placeholder.jpg" 
+                alt="Placeholder"
+              >
+
+            <% } %>
+
+          </div>
+
+          <!-- CONTENT -->
+          <div class="showcase-content">
+
+            <h2><%= project.name %></h2>
+
+            <p class="showcase-location">
+              📍 <%= project.location %>
+            </p>
+
+            <p class="showcase-description">
+
+              <%= project.shortDescription && project.shortDescription.trim() !== ''
+              ? project.shortDescription
+              : 'Premium plotted development with excellent connectivity and long-term investment value.' %>
+
+            </p>
+
+            <!-- META -->
+            <div class="showcase-meta">
+
+              <div class="meta-box">
+                <span>Total Area</span>
+
+                <strong>
+                  <%= project.totalArea && project.totalArea.trim() !== ''
+                  ? project.totalArea
+                  : 'N/A' %>
+                </strong>
+              </div>
+
+              <div class="meta-box">
+                <span>Plot Area</span>
+
+                <strong>
+                  <%= project.plotArea && project.plotArea.trim() !== ''
+                  ? project.plotArea
+                  : 'N/A' %>
+                </strong>
+              </div>
+
+              <div class="meta-box">
+                <span>Approval</span>
+
+                <strong>
+                  <%= project.approvalType && project.approvalType.trim() !== ''
+                  ? project.approvalType
+                  : 'N/A' %>
+                </strong>
+              </div>
+
+              <div class="meta-box">
+                <span>Status</span>
+
+                <strong>
+                  <%= project.statusText && project.statusText.trim() !== ''
+                  ? project.statusText
+                  : 'Completed' %>
+                </strong>
+              </div>
+
+            </div>
+
+            <a 
+              href="/projects/<%= project.slug %>" 
+              class="btn btn-primary"
+            >
+              View Project
+            </a>
+
+          </div>
+
+        </div>
+
+      <% }) %>
+
+    <% } else { %>
+
+      <div class="no-data-message">
+        <p>No completed projects available yet.</p>
+      </div>
+
+    <% } %>
+
+  </div>
+
+</section>
+  <!-- FOOTER -->
+  <%- include('../partials/footer.ejs') %>
+
+  <script src="/js/main.js"></script>
+
+</body>
+</html>

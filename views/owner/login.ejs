@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #2d8659 0%, #1f5c3f 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .navbar {
+      display: none;
+    }
+    .footer {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Container -->
+  <div class="login-container">
+    <div class="login-box">
+      <!-- Logo -->
+      <div class="login-header">
+        <h1>🌿 Rainbow Developers</h1>
+        <p>Owner Login</p>
+      </div>
+
+      <!-- Alerts -->
+      <% if (error && error.length > 0) { %>
+        <div class="alert alert-error">
+          <%= error[0] %>
+        </div>
+      <% } %>
+
+      <!-- Login Form -->
+      <form action="/owner/login" method="POST" class="login-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input 
+            type="text" 
+            id="username" 
+            name="username" 
+            placeholder="Enter your username"
+            required
+            autocomplete="username"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            placeholder="Enter your password"
+            required
+            autocomplete="current-password"
+          >
+        </div>
+
+        <button type="submit" class="btn btn-login">Login</button>
+      </form>
+
+      <!-- Info Message -->
+      <div class="login-info">
+        <p><strong>Demo Credentials:</strong></p>
+        <p>Username: <code>admin</code></p>
+        <p>Password: <code>Admin@123</code></p>
+      </div>
+
+      <!-- Back to Home -->
+      <div class="login-footer">
+        <a href="/" class="link-back">← Back to Home</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

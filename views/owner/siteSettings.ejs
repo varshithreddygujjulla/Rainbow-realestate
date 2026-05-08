@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+<%- include('../partials/ownerSidebar.ejs') %>
+
+<main class="admin-main">
+
+<h1>Site Settings</h1>
+
+<% if (success?.length) { %>
+  <div class="alert success"><%= success[0] %></div>
+<% } %>
+
+<% if (error?.length) { %>
+  <div class="alert error"><%= error[0] %></div>
+<% } %>
+
+<% const s = settings || {}; %>
+
+<form action="/owner/settings" method="POST" enctype="multipart/form-data">
+
+<!-- HERO -->
+<h3>Homepage Hero</h3>
+
+<% if (s.homeHeroImage?.url) { %>
+  <img src="<%= s.homeHeroImage.url %>" style="max-width:300px;"><br>
+
+  <!-- separate form (NOT nested) -->
+  <form action="/owner/settings/hero/remove" method="POST">
+    <button>Remove Hero</button>
+  </form>
+<% } %>
+
+<input type="file" name="homeHeroImage" accept="image/jpeg,image/png,image/webp">
+
+<input type="text" name="heroTitle" value="<%= s.heroTitle || '' %>" placeholder="Hero Title">
+<input type="text" name="heroSubtitle" value="<%= s.heroSubtitle || '' %>" placeholder="Hero Subtitle">
+
+<!-- ABOUT -->
+<h3>About</h3>
+
+<input type="text" name="aboutTitle" value="<%= s.aboutTitle || '' %>">
+<textarea name="aboutText"><%= s.aboutText || '' %></textarea>
+
+<!-- CONTACT -->
+<h3>Contact</h3>
+
+<input type="text" name="phoneNumber" value="<%= s.phoneNumber || '' %>">
+<input type="email" name="email" value="<%= s.email || '' %>">
+
+<textarea name="address"><%= s.address || '' %></textarea>
+
+<!-- SOCIAL -->
+<h3>Social</h3>
+
+<input 
+  type="text" 
+  name="whatsappNumber" 
+  value="<%= s.whatsappNumber || '' %>" 
+  pattern="[0-9]{10,15}" 
+  placeholder="919999999999"
+>
+
+<input type="text" name="facebookUrl" value="<%= s.facebookUrl || '' %>">
+<input type="text" name="instagramUrl" value="<%= s.instagramUrl || '' %>">
+<input type="text" name="linkedinUrl" value="<%= s.linkedinUrl || '' %>">
+
+<!-- FOOTER -->
+<h3>Company</h3>
+
+<input type="text" name="companyName" value="<%= s.companyName || '' %>">
+<input type="text" name="tagline" value="<%= s.tagline || '' %>">
+<input type="text" name="footerText" value="<%= s.footerText || '' %>">
+
+<button type="submit">Save</button>
+
+</form>
+
+</main>
+</div>
+
+</body>
+</html>

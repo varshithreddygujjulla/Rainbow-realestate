@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+<%- include('../partials/ownerSidebar.ejs') %>
+
+<main class="admin-main">
+
+<h1>Customer Enquiries</h1>
+
+<% if (success?.length) { %>
+  <div class="alert success"><%= success[0] %></div>
+<% } %>
+
+<% if (error?.length) { %>
+  <div class="alert error"><%= error[0] %></div>
+<% } %>
+
+<section>
+
+<% if (enquiries?.length) { %>
+
+<table class="admin-table">
+
+<thead>
+<tr>
+  <th>Date</th>
+  <th>Name</th>
+  <th>Contact</th>
+  <th>Project</th>
+  <th>Message</th>
+  <th>Status</th>
+  <th>Actions</th>
+</tr>
+</thead>
+
+<tbody>
+
+<% enquiries.forEach(enq => { %>
+
+<tr>
+
+<td>
+  <%= enq.createdAt ? new Date(enq.createdAt).toLocaleDateString() : '-' %>
+</td>
+
+<td><strong><%= enq.name || 'N/A' %></strong></td>
+
+<td>
+  <% if (enq.email) { %>
+    <a href="mailto:<%= enq.email %>"><%= enq.email %></a><br>
+  <% } %>
+
+  <% if (enq.phone) { %>
+    <a href="tel:<%= enq.phone %>"><%= enq.phone %></a>
+  <% } %>
+</td>
+
+<td>
+  <%= enq.projectName || 'General' %>
+</td>
+
+<td style="max-width:250px;word-break:break-word;">
+  <%= enq.message || '-' %>
+</td>
+
+<td>
+  <form method="POST" action="/owner/enquiries/<%= enq._id %>/status?_method=PUT">
+    <select name="status" onchange="this.form.submit()">
+
+      <option value="New" <%= enq.status==='New'?'selected':'' %>>New</option>
+      <option value="Contacted" <%= enq.status==='Contacted'?'selected':'' %>>Contacted</option>
+      <option value="Interested" <%= enq.status==='Interested'?'selected':'' %>>Interested</option>
+      <option value="Not Interested" <%= enq.status==='Not Interested'?'selected':'' %>>Not Interested</option>
+
+    </select>
+  </form>
+</td>
+
+<td>
+
+  <% if (enq.phone) { %>
+    <a href="https://wa.me/<%= enq.phone %>" target="_blank">WhatsApp</a>
+  <% } %>
+
+  <form method="POST" action="/owner/enquiries/<%= enq._id %>?_method=DELETE" onsubmit="return confirm('Delete this enquiry?');">
+    <button type="submit">Delete</button>
+  </form>
+
+</td>
+
+</tr>
+
+<% }) %>
+
+</tbody>
+
+</table>
+
+<p>Total Enquiries: <strong><%= enquiries.length %></strong></p>
+
+<% } else { %>
+
+<p>No enquiries yet</p>
+
+<% } %>
+
+</section>
+
+</main>
+</div>
+
+</body>
+</html>
