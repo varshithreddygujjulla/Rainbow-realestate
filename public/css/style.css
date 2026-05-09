@@ -453,6 +453,8 @@ section {
   width: 100%;
   max-width: 100%;
   transition: 0.35s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-card:hover{
@@ -465,26 +467,35 @@ section {
   height: 260px;
   object-fit: cover;
   display: block;
+  flex-shrink: 0;
 }
 
 .card-content{
   padding: 24px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 12px;
+  flex-grow: 1;
 }
 
 .card-content h3{
   font-size: 1.5rem;
-  margin-bottom: 18px;
+  margin: 0;
   color: #111;
+  line-height: 1.3;
 }
 
 .card-content p{
   color: #666;
   line-height: 1.8;
-  margin-bottom: 20px;
+  margin: 0;
   font-size: 16px;
+}
+
+.card-content .btn-primary,
+.card-content .btn-secondary {
+  margin-top: auto;
 }
 
 .trust-section {
@@ -549,6 +560,43 @@ section {
 
   .cta-section h2{
     font-size: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card img {
+    height: 200px;
+  }
+
+  .card-content {
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .card-content h3 {
+    font-size: 1.2rem;
+  }
+
+  .card-content p {
+    font-size: 14px;
+  }
+
+  .card-content .btn-primary,
+  .card-content .btn-secondary {
+    padding: 12px 20px;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
   }
 }
 
