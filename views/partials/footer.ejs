@@ -24,25 +24,31 @@
       </ul>
     </div>
 
-    <!-- Contact Info -->
+   <!-- Contact Info -->
 <div class="footer-section">
 
   <h4>Contact Us</h4>
 
-  <p>
-    Phone:
-    <%= siteSettings?.phone || '8341300547' %>
-  </p>
+  <% if (siteSettings?.phone) { %>
+    <p>
+      Phone:
+      <%= siteSettings.phone %>
+    </p>
+  <% } %>
 
-  <p>
-    Email:
-    <%= siteSettings?.email || 'saivarshithr3@gmail.com' %>
-  </p>
+  <% if (siteSettings?.email) { %>
+    <p>
+      Email:
+      <%= siteSettings.email %>
+    </p>
+  <% } %>
 
-  <p>
-    Address:
-    <%= siteSettings?.address || 'Hyderabad, Telangana, India' %>
-  </p>
+  <% if (siteSettings?.address) { %>
+    <p>
+      Address:
+      <%= siteSettings.address %>
+    </p>
+  <% } %>
 
 </div>
 
