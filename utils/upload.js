@@ -38,16 +38,20 @@ const deleteUploadedFile = async (imageUrl) => {
 
     if (!imageUrl) return;
 
-    // extract public id
+    // extract filename
     const parts = imageUrl.split('/');
 
     const filename = parts[parts.length - 1];
 
-    const publicId =
-      'rainbow-realestate/' +
-      filename.split('.')[0];
+    // remove extension
+    const fileWithoutExt = filename.split('.')[0];
+
+    // correct cloudinary public id
+    const publicId = `rainbow-developers/${fileWithoutExt}`;
 
     await cloudinary.uploader.destroy(publicId);
+
+    console.log('Deleted from Cloudinary:', publicId);
 
   } catch (err) {
 

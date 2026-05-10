@@ -122,19 +122,19 @@ const createProject = async (req, res) => {
       isFeatured: isFeatured === 'on' || isFeatured === 'true'
     };
 
-    // HERO IMAGE
+    // ✅ HERO IMAGE - USE CLOUDINARY PATH
     if (req.files?.heroImage?.length > 0) {
       const f = req.files.heroImage[0];
       projectData.heroImage = {
-        url: `/uploads/${f.filename}`,
+        url: f.path,
         filename: f.filename
       };
     }
 
-    // PHOTOS
+    // ✅ PHOTOS - USE CLOUDINARY PATHS
     if (req.files?.photos?.length > 0) {
       projectData.photos = req.files.photos.map((f) => ({
-        url: `/uploads/${f.filename}`,
+        url: f.path,
         filename: f.filename
       }));
     }
@@ -291,13 +291,15 @@ const deleteVideo = async (req, res) => {
     res.redirect('back');
   }
 };
+
 // ================= UPLOAD PHOTOS =================
 const uploadPhotos = async (req, res) => {
   try {
     const project = await Project.findById(req.params.id);
 
+    // ✅ USE CLOUDINARY PATHS
     const newPhotos = req.files.map(file => ({
-      url: `/uploads/${file.filename}`,
+      url: file.path,
       filename: file.filename
     }));
 
@@ -343,8 +345,9 @@ const uploadHeroImage = async (req, res) => {
       safeDeleteFile(project.heroImage.url);
     }
 
+    // ✅ USE CLOUDINARY PATH
     project.heroImage = {
-      url: `/uploads/${req.file.filename}`,
+      url: req.file.path,
       filename: req.file.filename
     };
 
