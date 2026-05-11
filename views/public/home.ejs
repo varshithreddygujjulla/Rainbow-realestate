@@ -3,9 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> | Premium Plots in Hyderabad</title>
+  <meta name="description" content="Rainbow Developers & Agro Farms — Premium HMDA & DTCP approved gated community plots in Hyderabad and Telangana. Trusted by 400+ happy customers.">
 
-  <title><%= title %></title>
-  <meta name="description" content="Premium real estate projects with trusted development and high returns. Explore Rainbow Developers & Agro Farms.">
+  <!-- OG Tags for WhatsApp & Social Sharing -->
+  <meta property="og:title" content="Rainbow Developers & Agro Farms — Premium Plots in Hyderabad">
+  <meta property="og:description" content="HMDA & DTCP approved layouts with transparent documentation. 400+ happy customers. Book your site visit today.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -14,180 +23,403 @@
 
 <%- include('../partials/navbar.ejs') %>
 
-<!-- HERO -->
+<!-- ========================================================
+     HERO SECTION
+======================================================== -->
 <section class="home-hero">
 
-  <div 
-    class="hero-slide active"
-    style="background-image:url('/images/hero1.jpg')">
-  </div>
+  <!-- SLIDES -->
+  <div class="hero-slide active" style="background-image:url('/images/hero1.jpg')"></div>
+  <div class="hero-slide" style="background-image:url('/images/hero2.jpg')"></div>
+  <div class="hero-slide" style="background-image:url('/images/hero3.jpg')"></div>
 
+  <!-- OVERLAY -->
   <div class="hero-overlay">
-
     <div class="container">
-
-      <div class="hero-content fade-up">
+      <div class="hero-content">
 
         <div class="hero-tag">
-          Premium HMDA & DTCP Approved Layouts
+          <span class="tag-dot"></span>
+          HMDA &amp; DTCP Approved Layouts
         </div>
 
-        <h1>
-          Find Your Dream Plot In Hyderabad
+        <h1 class="hero-title">
+          Find Your<br>
+          <em>Dream Plot</em><br>
+          In Hyderabad
         </h1>
 
-        <p>
-          Premium gated communities with greenery,
-          high ROI investment potential,
-          and transparent legal documentation.
+        <p class="hero-subtitle">
+          Premium gated communities with greenery, transparent legal documentation,
+          and high ROI investment potential across Telangana.
         </p>
 
         <div class="hero-buttons">
           <a href="/ongoing-projects" class="btn-primary">
             Explore Projects
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-
-          <a href="/contact" class="btn-secondary">
+          <a href="/contact" class="btn-outline-white">
             Book Site Visit
           </a>
         </div>
 
+        <!-- TRUST BADGES -->
+        <div class="hero-trust">
+          <div class="trust-pill">✓ 400+ Happy Customers</div>
+          <div class="trust-pill">✓ 8+ Projects</div>
+          <div class="trust-pill">✓ 361+ Acres Developed</div>
+        </div>
+
       </div>
-
     </div>
+  </div>
 
+  <!-- SLIDE DOTS -->
+  <div class="slide-dots">
+    <span class="dot active" onclick="goToSlide(0)"></span>
+    <span class="dot" onclick="goToSlide(1)"></span>
+    <span class="dot" onclick="goToSlide(2)"></span>
+  </div>
+
+  <!-- SCROLL INDICATOR -->
+  <div class="scroll-indicator">
+    <span></span>
   </div>
 
 </section>
 
-<!-- FEATURED -->
-<section class="featured-projects">
+<!-- ========================================================
+     STATS BAR
+======================================================== -->
+<section class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item" data-target="8">
+        <h3 class="counter">0</h3>
+        <p>Total Projects</p>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item" data-target="400">
+        <h3 class="counter">0</h3>
+        <p>Happy Customers</p>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item" data-target="361">
+        <h3 class="counter">0</h3>
+        <p>Acres Developed</p>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item" data-target="3">
+        <h3 class="counter">0</h3>
+        <p>Districts Covered</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================
+     FEATURED PROJECTS
+======================================================== -->
+<section class="featured-section">
   <div class="container">
 
-    <h2 class="section-title">Featured Projects</h2>
+    <div class="section-label">Featured Projects</div>
+    <h2 class="section-heading-lg">Our Premium Developments</h2>
+    <p class="section-sub">Carefully curated plots with excellent connectivity, modern infrastructure and strong appreciation potential.</p>
 
-    <div class="projects-grid">
-
+    <div class="cards-grid">
       <% if (featuredProjects && featuredProjects.length > 0) { %>
         <% featuredProjects.forEach(project => { %>
 
-          <div class="project-card" style="overflow:hidden; border-radius:20px;">
-
-            <img 
-              src="<%= project.heroImage && project.heroImage.url ? project.heroImage.url : '/images/placeholder.jpg' %>"
-              alt="<%= project.name %>"
-              style="
-                width:100%;
-                height:220px;
-                object-fit:cover;
-                display:block;
-              "
-            >
-
-            <div class="card-content">
-              <h3><%= project.name %></h3>
-
-              <% if (project.location) { %>
-                <p>📍 <%= project.location %></p>
+          <div class="project-card reveal-card">
+            <div class="card-image-wrap">
+              <img
+                src="<%= project.heroImage && project.heroImage.url ? project.heroImage.url : '/images/hero1.jpg' %>"
+                alt="<%= project.name %>"
+                loading="lazy"
+              >
+              <div class="card-badge badge-featured">Featured</div>
+              <div class="card-overlay">
+                <a href="/projects/<%= project.slug %>" class="overlay-btn">View Details</a>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="card-meta-row">
+                <% if (project.approvalType) { %>
+                  <span class="approval-tag"><%= project.approvalType %></span>
+                <% } %>
+                <% if (project.category) { %>
+                  <span class="status-tag status-<%= project.category === 'Ongoing' ? 'ongoing' : 'completed' %>">
+                    <%= project.category %>
+                  </span>
+                <% } %>
+              </div>
+              <h3 class="card-title"><%= project.name %></h3>
+              <p class="card-location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <%= project.location %>
+              </p>
+              <% if (project.totalArea) { %>
+                <p class="card-area">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                  <%= project.totalArea %>
+                </p>
               <% } %>
-
-              <a href="/projects/<%= project.slug %>" class="btn-primary">
+              <a href="/projects/<%= project.slug %>" class="card-btn">
                 View Details
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
             </div>
-
           </div>
 
         <% }) %>
       <% } else { %>
-        <p>No featured projects</p>
+        <p class="no-data">No featured projects available yet.</p>
       <% } %>
-
     </div>
 
   </div>
 </section>
 
-<!-- ONGOING -->
-<section class="ongoing-projects">
+<!-- ========================================================
+     ONGOING PROJECTS
+======================================================== -->
+<section class="ongoing-section">
   <div class="container">
 
-    <h2 class="section-title">Ongoing Projects</h2>
+    <div class="section-label">Active Developments</div>
+    <h2 class="section-heading-lg">Ongoing Projects</h2>
+    <p class="section-sub">Invest today and watch your wealth grow. Premium plots in rapidly developing corridors of Telangana.</p>
 
-    <div class="projects-grid">
-
+    <div class="cards-grid">
       <% if (ongoingProjects && ongoingProjects.length > 0) { %>
         <% ongoingProjects.forEach(project => { %>
 
-          <div class="project-card" style="overflow:hidden; border-radius:20px;">
-
-            <img 
-              src="<%= project.heroImage && project.heroImage.url ? project.heroImage.url : '/images/placeholder.jpg' %>" 
-              alt="<%= project.name %>"
-              style="
-                width:100%;
-                height:220px;
-                object-fit:cover;
-                display:block;
-              "
-            >
-
-            <div class="card-content">
-
-              <h3><%= project.name %></h3>
-
-              <% if (project.location) { %>
-                <p>📍 <%= project.location %></p>
-              <% } %>
-
-              <a href="/projects/<%= project.slug %>" class="btn-secondary">
-                View Details
-              </a>
-
+          <div class="project-card reveal-card">
+            <div class="card-image-wrap">
+              <img
+                src="<%= project.heroImage && project.heroImage.url ? project.heroImage.url : '/images/hero2.jpg' %>"
+                alt="<%= project.name %>"
+                loading="lazy"
+              >
+              <div class="card-badge badge-ongoing">Ongoing</div>
+              <div class="card-overlay">
+                <a href="/projects/<%= project.slug %>" class="overlay-btn">View Details</a>
+              </div>
             </div>
-
+            <div class="card-body">
+              <div class="card-meta-row">
+                <% if (project.approvalType) { %>
+                  <span class="approval-tag"><%= project.approvalType %></span>
+                <% } %>
+                <span class="status-tag status-ongoing">Active</span>
+              </div>
+              <h3 class="card-title"><%= project.name %></h3>
+              <p class="card-location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <%= project.location %>
+              </p>
+              <% if (project.totalArea) { %>
+                <p class="card-area">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                  <%= project.totalArea %>
+                </p>
+              <% } %>
+              <a href="/projects/<%= project.slug %>" class="card-btn">
+                View Details
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
           </div>
 
-        <% }); %>
+        <% }) %>
       <% } else { %>
-        <p>No ongoing projects</p>
+        <p class="no-data">No ongoing projects available.</p>
       <% } %>
-
     </div>
 
-    <div class="text-center">
+    <div class="section-cta-row">
       <a href="/ongoing-projects" class="btn-primary">
-        View All
+        View All Projects
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
 
   </div>
 </section>
 
-<!-- TRUST -->
-<section class="trust-section">
+<!-- ========================================================
+     WHY CHOOSE US
+======================================================== -->
+<section class="why-section">
   <div class="container">
 
-    <h2 class="section-title">Why Choose Rainbow Developers?</h2>
+    <div class="why-grid">
 
-    <div class="trust-grid">
-      <div>✔ HMDA / DTCP Approved</div>
-      <div>✔ Clear Legal Documentation</div>
-      <div>✔ Prime Locations</div>
-      <div>✔ High ROI Investment</div>
+      <!-- LEFT TEXT -->
+      <div class="why-text reveal-left">
+        <div class="section-label">Why Choose Us</div>
+        <h2 class="section-heading-lg">Rainbow Developers — Built On Trust</h2>
+        <p class="why-desc">
+          For over a decade, we've been delivering premium residential layouts
+          with complete transparency, sustainable design, and a commitment to customer satisfaction.
+        </p>
+
+        <div class="why-features">
+          <div class="why-feat">
+            <div class="feat-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </div>
+            <div>
+              <h4>HMDA / DTCP Approved</h4>
+              <p>All projects have full government approvals and clear legal title.</p>
+            </div>
+          </div>
+
+          <div class="why-feat">
+            <div class="feat-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div>
+              <h4>Prime Locations</h4>
+              <p>Strategic sites in fast-growing corridors with excellent road connectivity.</p>
+            </div>
+          </div>
+
+          <div class="why-feat">
+            <div class="feat-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div>
+              <h4>High ROI Potential</h4>
+              <p>Consistent appreciation in land value, proven across all our completed projects.</p>
+            </div>
+          </div>
+
+          <div class="why-feat">
+            <div class="feat-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><rect x="2" y="9" width="20" height="13" rx="2" ry="2"/></svg>
+            </div>
+            <div>
+              <h4>Transparent Documentation</h4>
+              <p>Zero hidden charges. Clear and authentic paperwork for every purchase.</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="/about" class="btn-primary">
+          About Us
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- RIGHT IMAGE STACK -->
+      <div class="why-image-stack reveal-right">
+        <div class="img-main">
+          <img src="/images/hero1.jpg" alt="Premium plots" loading="lazy">
+        </div>
+        <div class="img-badge-card">
+          <div class="badge-number">10+</div>
+          <div class="badge-label">Years of Excellence</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================
+     TESTIMONIALS
+======================================================== -->
+<section class="testimonials-section">
+  <div class="container">
+
+    <div class="section-label light">Happy Customers</div>
+    <h2 class="section-heading-lg light">What Our Customers Say</h2>
+
+    <div class="testimonials-track" id="testimonialsTrack">
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Excellent experience from start to finish. The documentation was completely transparent and the plot location is exactly as described. Rainbow Developers are truly trustworthy."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">RK</div>
+          <div>
+            <strong>Ramesh Kumar</strong>
+            <span>Purchased at Rainbow County</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"The team was very helpful and guided us through every step. HMDA approved with excellent road connectivity. Very happy with the investment and the overall experience."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SP</div>
+          <div>
+            <strong>Sunita Prasad</strong>
+            <span>Purchased at Rainbow Valley</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"I was looking for a reliable developer in Hyderabad for a long time. Rainbow Developers stood out because of their clean legal documents and honest approach. Highly recommended."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">VR</div>
+          <div>
+            <strong>Venkat Rao</strong>
+            <span>Plot Investor</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="testi-dots" id="testiDots">
+      <span class="t-dot active" onclick="goToTesti(0)"></span>
+      <span class="t-dot" onclick="goToTesti(1)"></span>
+      <span class="t-dot" onclick="goToTesti(2)"></span>
     </div>
 
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section">
+<!-- ========================================================
+     CTA SECTION
+======================================================== -->
+<section class="cta-final">
+  <div class="cta-bg"></div>
   <div class="container">
-    <h2>Your Dream Plot is Waiting 🚀</h2>
-    <p>Limited plots available — Book your visit today</p>
-    <a href="/contact" class="btn-white">Contact Us</a>
+    <div class="cta-inner reveal-up">
+      <div class="cta-text">
+        <h2>Your Dream Plot is<br>Just One Step Away</h2>
+        <p>Limited plots available across Hyderabad & Telangana — Book your free site visit today.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="/contact" class="btn-primary btn-lg">
+          Book Site Visit
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <% if (settings && settings.whatsappNumber) { %>
+        <a href="https://wa.me/<%= settings.whatsappNumber %>" target="_blank" class="btn-whatsapp-cta">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp Us
+        </a>
+        <% } %>
+      </div>
+    </div>
   </div>
 </section>
+
+<!-- FLOATING WHATSAPP -->
+<% if (settings && settings.whatsappNumber) { %>
+<a href="https://wa.me/<%= settings.whatsappNumber %>" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<% } %>
 
 <%- include('../partials/footer.ejs') %>
 

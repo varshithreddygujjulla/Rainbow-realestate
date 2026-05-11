@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title><%= title %></title>
+  <meta name="description" content="Premium real estate projects with trusted development and high returns. Explore Rainbow Developers & Agro Farms.">
+
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<%- include('../partials/navbar.ejs') %>
+
+<!-- HERO -->
+<section class="home-hero">
+
+  <div 
+    class="hero-slide active"
+    style="background-image:url('/images/hero1.jpg')">
+  </div>
+
+  <div class="hero-overlay">
+
+    <div class="container">
+
+      <div class="hero-content fade-up">
+
+        <div class="hero-tag">
+          Premium HMDA & DTCP Approved Layouts
+        </div>
+
+        <h1>
+          Find Your Dream Plot In Hyderabad
+        </h1>
+
+        <p>
+          Premium gated communities with greenery,
+          high ROI investment potential,
+          and transparent legal documentation.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="/ongoing-projects" class="btn-primary">
+            Explore Projects
+          </a>
+
+          <a href="/contact" class="btn-secondary">
+            Book Site Visit
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FEATURED -->
+<section class="featured-projects">
+  <div class="container">
+
+    <h2 class="section-title">Featured Projects</h2>
+
+    <div class="projects-grid">
+
+      <% if (featuredProjects && featuredProjects.length > 0) { %>
+        <% featuredProjects.forEach(project => { %>
+
+          <div class="project-card" style="overflow:hidden; border-radius:20px;">
+
+            <img 
+              src="<%= project.heroImage && project.heroImage.url ? project.heroImage.url : '/images/placeholder.jpg' %>"
+              alt="<%= project.name %>"
+              style="
+                width:100%;
+                height:220px;
+                object-fit:cover;
+                display:block;
+              "
+            >
+
+            <div class="card-content">
+              <h3><%= project.name %></h3>
+
+              <% if (project.location) { %>
+                <p>📍 <%= project.location %></p>
+              <% } %>
+
+              <a href="/projects/<%= project.slug %>" class="btn-primary">
+                View Details
+              </a>
+            </div>
+
+          </div>
+
+        <% }) %>
+      <% } else { %>
+        <p>No featured projects</p>
+      <% } %>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ONGOING -->
+<section class="ongoing-projects">
+  <div class="container">
+
+    <h2 class="section-title">Ongoing Projects</h2>
+
+    <div class="projects-grid">
+
+      <% if (ongoingProjects && ongoingProjects.length > 0) { %>
+        <% ongoingProjects.forEach(project => { %>
+
+          <div class="project-card" style="overflow:hidden; border-radius:20px;">
+
+            <img 
+              src="<%= project.heroImage && project.heroImage.url ? project.heroImage.url : '/images/placeholder.jpg' %>" 
+              alt="<%= project.name %>"
+              style="
+                width:100%;
+                height:220px;
+                object-fit:cover;
+                display:block;
+              "
+            >
+
+            <div class="card-content">
+
+              <h3><%= project.name %></h3>
+
+              <% if (project.location) { %>
+                <p>📍 <%= project.location %></p>
+              <% } %>
+
+              <a href="/projects/<%= project.slug %>" class="btn-secondary">
+                View Details
+              </a>
+
+            </div>
+
+          </div>
+
+        <% }); %>
+      <% } else { %>
+        <p>No ongoing projects</p>
+      <% } %>
+
+    </div>
+
+    <div class="text-center">
+      <a href="/ongoing-projects" class="btn-primary">
+        View All
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust-section">
+  <div class="container">
+
+    <h2 class="section-title">Why Choose Rainbow Developers?</h2>
+
+    <div class="trust-grid">
+      <div>✔ HMDA / DTCP Approved</div>
+      <div>✔ Clear Legal Documentation</div>
+      <div>✔ Prime Locations</div>
+      <div>✔ High ROI Investment</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Your Dream Plot is Waiting 🚀</h2>
+    <p>Limited plots available — Book your visit today</p>
+    <a href="/contact" class="btn-white">Contact Us</a>
+  </div>
+</section>
+
+<%- include('../partials/footer.ejs') %>
+
+<script src="/js/main.js"></script>
+
+</body>
+</html>

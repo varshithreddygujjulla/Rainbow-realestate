@@ -1,15 +1,14 @@
 <% const siteSettings = typeof settings !== "undefined" ? settings : null; %>
 
 <footer class="footer">
-  <div class="footer-container container">
-
+<div class="footer-container container">
     <!-- Company Info -->
     <div class="footer-section">
-      <h3>Rainbow Developers<br>&amp; Agro Farms</h3>
-      <p class="footer-tagline">Premium Real Estate in Telangana</p>
+      <h3>Rainbow Developers & Agro Farms</h3>
+      <p class="footer-tagline">Building Premium Real Estate</p>
       <p class="footer-description">
-        Developing premium residential layouts with transparency,
-        sustainability, and community-first planning across Telangana.
+        We specialize in developing premium residential layouts with transparent 
+        documentation and sustainable community planning.
       </p>
     </div>
 
@@ -19,53 +18,67 @@
       <ul class="footer-links">
         <li><a href="/">Home</a></li>
         <li><a href="/about">About Us</a></li>
-        <li><a href="/ongoing-projects">Ongoing Projects</a></li>
         <li><a href="/completed-projects">Completed Projects</a></li>
-        <li><a href="/contact">Contact Us</a></li>
+        <li><a href="/ongoing-projects">Ongoing Projects</a></li>
+        <li><a href="/contact">Contact</a></li>
       </ul>
     </div>
 
-    <!-- Contact Info -->
-    <div class="footer-section">
-      <h4>Contact Us</h4>
-      <% if (siteSettings?.phoneNumber) { %>
-        <p>📞 <%= siteSettings.phoneNumber %></p>
-      <% } %>
-      <% if (siteSettings?.email) { %>
-        <p>✉ <%= siteSettings.email %></p>
-      <% } %>
-      <% if (siteSettings?.address) { %>
-        <p>📍 <%= siteSettings.address %></p>
-      <% } %>
-    </div>
+   <!-- Contact Info -->
+<div class="footer-section">
+
+  <h4>Contact Us</h4>
+
+ <% if (siteSettings?.phoneNumber) { %>
+  <p>
+    Phone:
+    <%= siteSettings.phoneNumber %>
+  </p>
+<% } %>
+
+  <% if (siteSettings?.email) { %>
+    <p>
+      Email:
+      <%= siteSettings.email %>
+    </p>
+  <% } %>
+
+  <% if (siteSettings?.address) { %>
+    <p>
+      Address:
+      <%= siteSettings.address %>
+    </p>
+  <% } %>
+
+</div>
 
     <!-- Social Links -->
     <div class="footer-section">
       <h4>Follow Us</h4>
       <div class="social-links">
-        <% if (siteSettings?.facebookUrl) { %>
+        <% if (siteSettings && siteSettings.facebookUrl) { %>
           <a href="<%= siteSettings.facebookUrl %>" target="_blank" class="social-link">Facebook</a>
         <% } %>
-        <% if (siteSettings?.instagramUrl) { %>
+
+        <% if (siteSettings && siteSettings.instagramUrl) { %>
           <a href="<%= siteSettings.instagramUrl %>" target="_blank" class="social-link">Instagram</a>
         <% } %>
-        <% if (siteSettings?.whatsappNumber) { %>
+
+        <% if (siteSettings && siteSettings.whatsappNumber) { %>
           <a href="https://wa.me/<%= siteSettings.whatsappNumber %>" target="_blank" class="social-link">WhatsApp</a>
         <% } %>
       </div>
     </div>
-
   </div>
 
   <!-- Footer Bottom -->
   <div class="footer-bottom">
     <p>
-      <% if (siteSettings?.footerText) { %>
+      <% if (siteSettings && siteSettings.footerText) { %>
         <%= siteSettings.footerText %>
       <% } else { %>
-        &copy; <%= new Date().getFullYear() %> Rainbow Developers &amp; Agro Farms. All rights reserved.
+        © 2024 Rainbow Developers & Agro Farms. All rights reserved.
       <% } %>
     </p>
   </div>
-
 </footer>

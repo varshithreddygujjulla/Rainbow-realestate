@@ -1,0 +1,126 @@
+<nav class="navbar">
+
+  <div class="navbar-container">
+
+    <!-- LOGO -->
+    <a href="/" class="logo">
+      Rainbow Developers
+    </a>
+
+    <!-- MOBILE MENU BUTTON -->
+    <div class="hamburger" onclick="toggleMenu()">
+      ☰
+    </div>
+
+    <!-- NAV LINKS -->
+    <ul class="navbar-links" id="navMenu">
+
+      <li>
+        <a href="/">Home</a>
+      </li>
+
+      <li>
+        <a href="/completed-projects">Projects</a>
+      </li>
+
+      <li>
+        <a href="/about">About</a>
+      </li>
+
+      <li>
+        <a href="/contact">Contact</a>
+      </li>
+
+      <% if (settings?.whatsappNumber) { %>
+
+        <li>
+          <a
+            href="https://wa.me/<%= settings.whatsappNumber %>"
+            target="_blank"
+            class="whatsapp-btn"
+          >
+            WhatsApp
+          </a>
+        </li>
+
+      <% } %>
+
+      <% if (isOwner) { %>
+
+        <li>
+          <a href="/owner/dashboard">
+            Dashboard
+          </a>
+        </li>
+
+        <li>
+          <a href="/owner/logout">
+            Logout
+          </a>
+        </li>
+
+      <% } else { %>
+
+        <li>
+          <a href="/owner/login">
+            Owner
+          </a>
+        </li>
+
+      <% } %>
+
+    </ul>
+
+  </div>
+
+</nav>
+
+<!-- FLASH MESSAGES -->
+
+<% if (success?.length) { %>
+
+  <div class="alert success">
+    <%= success[0] %>
+  </div>
+
+<% } %>
+
+<% if (error?.length) { %>
+
+  <div class="alert error">
+    <%= error[0] %>
+  </div>
+
+<% } %>
+
+<script>
+
+function toggleMenu() {
+
+  document
+    .getElementById('navMenu')
+    .classList.toggle('active');
+
+}
+
+// AUTO HIDE ALERTS
+
+setTimeout(() => {
+
+  document
+    .querySelectorAll('.alert')
+    .forEach(alert => {
+
+      alert.style.opacity = '0';
+
+      setTimeout(() => {
+
+        alert.style.display = 'none';
+
+      }, 300);
+
+    });
+
+}, 3000);
+
+</script>

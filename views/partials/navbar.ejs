@@ -1,72 +1,45 @@
-<nav class="navbar">
+<nav class="navbar" id="mainNav">
 
   <div class="navbar-container">
 
     <!-- LOGO -->
-    <a href="/" class="logo">
-      Rainbow Developers
-    </a>
+    <a href="/" class="logo">Rainbow Developers</a>
 
-    <!-- MOBILE MENU BUTTON -->
-    <div class="hamburger" onclick="toggleMenu()">
-      ☰
-    </div>
+    <!-- HAMBURGER -->
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
 
     <!-- NAV LINKS -->
     <ul class="navbar-links" id="navMenu">
 
-      <li>
-        <a href="/">Home</a>
-      </li>
+      <li><a href="/">Home</a></li>
 
-      <li>
-        <a href="/completed-projects">Projects</a>
-      </li>
+      <li><a href="/ongoing-projects">Ongoing</a></li>
 
-      <li>
-        <a href="/about">About</a>
-      </li>
+      <li><a href="/completed-projects">Completed</a></li>
 
-      <li>
-        <a href="/contact">Contact</a>
-      </li>
+      <li><a href="/about">About</a></li>
+
+      <li><a href="/contact">Contact</a></li>
 
       <% if (settings?.whatsappNumber) { %>
-
         <li>
-          <a
-            href="https://wa.me/<%= settings.whatsappNumber %>"
-            target="_blank"
-            class="whatsapp-btn"
-          >
+          <a href="https://wa.me/<%= settings.whatsappNumber %>" target="_blank" class="whatsapp-btn">
             WhatsApp
           </a>
         </li>
-
       <% } %>
 
       <% if (isOwner) { %>
-
-        <li>
-          <a href="/owner/dashboard">
-            Dashboard
-          </a>
-        </li>
-
-        <li>
-          <a href="/owner/logout">
-            Logout
-          </a>
-        </li>
-
+        <li><a href="/owner/dashboard">Dashboard</a></li>
+        <li><a href="/owner/logout">Logout</a></li>
       <% } else { %>
-
-        <li>
-          <a href="/owner/login">
-            Owner
-          </a>
-        </li>
-
+        <li><a href="/owner/login">Owner</a></li>
       <% } %>
 
     </ul>
@@ -76,51 +49,9 @@
 </nav>
 
 <!-- FLASH MESSAGES -->
-
 <% if (success?.length) { %>
-
-  <div class="alert success">
-    <%= success[0] %>
-  </div>
-
+  <div class="alert success"><%= success[0] %></div>
 <% } %>
-
 <% if (error?.length) { %>
-
-  <div class="alert error">
-    <%= error[0] %>
-  </div>
-
+  <div class="alert error"><%= error[0] %></div>
 <% } %>
-
-<script>
-
-function toggleMenu() {
-
-  document
-    .getElementById('navMenu')
-    .classList.toggle('active');
-
-}
-
-// AUTO HIDE ALERTS
-
-setTimeout(() => {
-
-  document
-    .querySelectorAll('.alert')
-    .forEach(alert => {
-
-      alert.style.opacity = '0';
-
-      setTimeout(() => {
-
-        alert.style.display = 'none';
-
-      }, 300);
-
-    });
-
-}, 3000);
-
-</script>

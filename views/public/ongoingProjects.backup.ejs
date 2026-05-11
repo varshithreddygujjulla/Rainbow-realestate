@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title><%= title %></title>
+
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<%- include('../partials/navbar.ejs') %>
+
+<!-- HERO -->
+<section class="inner-hero">
+
+  <div class="inner-hero-overlay">
+
+    <div class="container">
+
+      <div class="inner-hero-content">
+
+        <span class="hero-subtitle">
+          OUR ONGOING PROJECTS
+        </span>
+
+        <h1>
+          Investing In Tomorrow's Growth
+        </h1>
+
+        <p>
+          Explore our premium ongoing developments with excellent locations, modern infrastructure, and strong future appreciation potential.
+        </p>
+
+        <a href="/contact" class="btn btn-primary">
+          Book Site Visit
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section">
+
+  <div class="container">
+
+    <!-- SECTION HEADING -->
+    <div class="section-heading">
+
+      <span>Ongoing Developments</span>
+
+      <h2>
+        Premium Projects Under Development
+      </h2>
+
+      <p>
+        Carefully planned layouts with future-ready infrastructure, strategic connectivity, and long-term investment value.
+      </p>
+
+    </div>
+
+    <% if (projects && projects.length > 0) { %>
+
+      <% projects.forEach((project, index) => { %>
+
+        <div class="project-showcase <%= index % 2 !== 0 ? 'reverse' : '' %>">
+
+          <!-- IMAGE -->
+          <div class="showcase-image">
+
+            <% if (project.heroImage && project.heroImage.url) { %>
+
+              <img 
+                src="<%= project.heroImage.url %>" 
+                alt="<%= project.name %>"
+              >
+
+            <% } else { %>
+
+              <img 
+                src="/images/placeholder.jpg" 
+                alt="Placeholder"
+              >
+
+            <% } %>
+
+          </div>
+
+          <!-- CONTENT -->
+          <div class="showcase-content">
+
+            <h2><%= project.name %></h2>
+
+            <p class="showcase-location">
+              📍 <%= project.location %>
+            </p>
+
+            <p class="showcase-description">
+
+              <%= project.shortDescription && project.shortDescription.trim() !== ''
+              ? project.shortDescription
+              : 'Premium plotted development with modern infrastructure and excellent future investment opportunity.' %>
+
+            </p>
+
+            <!-- META -->
+            <div class="showcase-meta">
+
+              <div class="meta-box">
+                <span>Total Area</span>
+
+                <strong>
+                  <%= project.totalArea && project.totalArea.trim() !== ''
+                  ? project.totalArea
+                  : 'N/A' %>
+                </strong>
+              </div>
+
+              <div class="meta-box">
+                <span>Plot Area</span>
+
+                <strong>
+                  <%= project.plotArea && project.plotArea.trim() !== ''
+                  ? project.plotArea
+                  : 'N/A' %>
+                </strong>
+              </div>
+
+              <div class="meta-box">
+                <span>Approval</span>
+
+                <strong>
+                  <%= project.approvalType && project.approvalType.trim() !== ''
+                  ? project.approvalType
+                  : 'N/A' %>
+                </strong>
+              </div>
+
+              <div class="meta-box">
+                <span>Status</span>
+
+                <strong>
+                  <%= project.statusText && project.statusText.trim() !== ''
+                  ? project.statusText
+                  : 'Ongoing' %>
+                </strong>
+              </div>
+
+            </div>
+
+            <a 
+              href="/projects/<%= project.slug %>" 
+              class="btn btn-primary"
+            >
+              View Project
+            </a>
+
+          </div>
+
+        </div>
+
+      <% }) %>
+
+    <% } else { %>
+
+      <div class="no-data-message">
+        <p>No ongoing projects available yet.</p>
+      </div>
+
+    <% } %>
+
+  </div>
+
+</section>
+
+<!-- CTA -->
+<section class="projects-cta">
+
+  <div class="container">
+
+    <h2>
+      Ready To Invest In Your Future?
+    </h2>
+
+    <p>
+      Connect with us today and explore premium investment opportunities.
+    </p>
+
+    <div class="cta-buttons">
+
+      <a href="/contact" class="btn btn-primary">
+        Contact Us
+      </a>
+
+      <a href="/completed-projects" class="btn btn-secondary">
+        View Completed Projects
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<%- include('../partials/footer.ejs') %>
+
+<script src="/js/main.js"></script>
+
+</body>
+</html>
