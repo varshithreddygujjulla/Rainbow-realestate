@@ -1848,3 +1848,416 @@ section { padding: 90px 0; }
   body { padding-bottom: 72px; }
   .whatsapp-float { bottom: 88px; }
 }
+/* =========================================================
+   MOBILE FIXES — append to the bottom of style.css
+   These override issues on small screens (phones)
+========================================================= */
+
+/* SMALL PHONES (under 600px) */
+@media (max-width: 600px) {
+
+  /* Hero — fix overflow and sizing */
+  .home-hero {
+    min-height: auto;
+    padding-bottom: 60px;
+  }
+
+  .hero-overlay {
+    min-height: auto;
+    padding: 100px 0 60px;
+  }
+
+  .hero-content {
+    padding: 20px 0;
+    max-width: 100%;
+  }
+
+  .hero-tag {
+    font-size: 10px;
+    padding: 6px 14px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+
+  .hero-title {
+    font-size: 36px !important;
+    line-height: 1.15;
+    margin-bottom: 18px;
+    word-wrap: break-word;
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+    margin-bottom: 28px;
+    line-height: 1.65;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 28px;
+  }
+
+  .hero-buttons a {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px;
+    font-size: 14px;
+  }
+
+  /* Trust badges — make them fit nicely on mobile */
+  .hero-trust {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .trust-pill {
+    font-size: 12px;
+    padding: 5px 14px;
+  }
+
+  /* Slide dots position fix */
+  .slide-dots {
+    bottom: 20px;
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
+
+  /* Stats bar — stack vertically with proper dividers */
+  .stats-grid {
+    flex-direction: column;
+    padding: 30px 0;
+  }
+
+  .stat-item {
+    padding: 16px 0;
+    width: 100%;
+  }
+
+  .stat-item h3 {
+    font-size: 36px;
+  }
+
+  .stat-divider {
+    width: 60%;
+    height: 1px;
+    margin: 0 auto;
+  }
+
+  /* Section padding compressed */
+  section {
+    padding: 60px 0 !important;
+  }
+
+  .featured-section,
+  .ongoing-section,
+  .why-section {
+    padding: 60px 0 !important;
+  }
+
+  /* Section headings smaller */
+  .section-heading-lg {
+    font-size: 26px !important;
+    line-height: 1.25;
+  }
+
+  .section-sub {
+    font-size: 15px;
+    margin-bottom: 36px;
+  }
+
+  /* Project cards — single column */
+  .cards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px;
+  }
+
+  .card-image-wrap {
+    height: 200px;
+  }
+
+  .card-title {
+    font-size: 18px;
+  }
+
+  /* Why section fixes */
+  .why-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px;
+  }
+
+  .why-text {
+    text-align: left;
+  }
+
+  .why-image-stack {
+    height: 280px;
+  }
+
+  .img-badge-card {
+    bottom: -12px;
+    left: -12px;
+    padding: 16px 20px;
+  }
+
+  .img-badge-card .badge-number {
+    font-size: 28px;
+  }
+
+  .img-badge-card .badge-label {
+    font-size: 11px;
+  }
+
+  /* Why features stack */
+  .why-features {
+    gap: 18px;
+  }
+
+  .why-feat h4 {
+    font-size: 15px;
+  }
+
+  .why-feat p {
+    font-size: 13px;
+  }
+
+  /* Testimonials */
+  .testimonials-section {
+    padding: 60px 0 !important;
+  }
+
+  .testi-card {
+    padding: 28px 22px;
+  }
+
+  .testi-text {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .testi-author strong {
+    font-size: 14px;
+  }
+
+  .testi-author span {
+    font-size: 12px;
+  }
+
+  /* Final CTA */
+  .cta-inner {
+    padding: 40px 24px !important;
+    flex-direction: column;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .cta-inner h2 {
+    font-size: 26px !important;
+    line-height: 1.25;
+  }
+
+  .cta-inner p {
+    font-size: 15px;
+  }
+
+  .cta-actions {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cta-actions a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Floating WhatsApp button - smaller on mobile */
+  .whatsapp-float {
+    width: 52px;
+    height: 52px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  /* Container padding */
+  .container {
+    width: 92%;
+    padding: 0 4px;
+  }
+
+  /* Navbar — ensure logo fits on one line */
+  .navbar-container {
+    height: 70px;
+    padding: 0 8px;
+  }
+
+  .logo {
+    font-size: 1.1rem !important;
+    line-height: 1;
+  }
+
+  .hamburger {
+    padding: 0;
+  }
+
+  /* Inner page hero (ongoing, completed, about, contact) */
+  .inner-hero {
+    padding: 120px 0 60px;
+  }
+
+  .inner-hero-content h1 {
+    font-size: 32px !important;
+    line-height: 1.15;
+  }
+
+  .inner-hero-content p {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .hero-subtitle-label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+  }
+
+  /* Project showcase pages mobile */
+  .section-heading h2 {
+    font-size: 28px !important;
+  }
+
+  .section-heading p {
+    font-size: 15px;
+  }
+
+  .showcase-content {
+    padding: 28px 22px !important;
+  }
+
+  .showcase-content h2 {
+    font-size: 22px !important;
+  }
+
+  .showcase-meta {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .meta-box {
+    padding: 14px;
+  }
+
+  .meta-box strong {
+    font-size: 15px;
+  }
+
+  /* Contact page */
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 30px;
+  }
+
+  .contact-info-box,
+  .contact-form-box {
+    padding: 36px 26px !important;
+  }
+
+  .contact-info-box h2,
+  .contact-form-box h2 {
+    font-size: 24px;
+  }
+
+  /* About page stats */
+  .about-content {
+    grid-template-columns: 1fr !important;
+    gap: 40px;
+  }
+
+  .about-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .stat-box {
+    padding: 24px 16px;
+  }
+
+  .stat-box h3 {
+    font-size: 30px;
+  }
+
+  /* Features grid - single column */
+  .features-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+  /* Footer */
+  .footer-container {
+    grid-template-columns: 1fr !important;
+    gap: 32px;
+    padding-bottom: 36px;
+  }
+
+  /* Project details page */
+  .project-hero {
+    height: 380px;
+  }
+
+  .project-hero h1 {
+    font-size: 28px !important;
+    line-height: 1.15;
+  }
+
+  .overview-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .overview-card {
+    padding: 20px 14px;
+  }
+
+  .overview-card h4 {
+    font-size: 11px;
+  }
+
+  .overview-card p {
+    font-size: 14px;
+  }
+}
+
+/* TINY PHONES (under 380px) */
+@media (max-width: 380px) {
+
+  .hero-title {
+    font-size: 30px !important;
+  }
+
+  .section-heading-lg {
+    font-size: 22px !important;
+  }
+
+  .stat-item h3 {
+    font-size: 32px;
+  }
+
+  .logo {
+    font-size: 1rem !important;
+  }
+
+  .navbar-links a {
+    font-size: 15px !important;
+  }
+
+  .about-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .showcase-meta {
+    grid-template-columns: 1fr;
+  }
+}
